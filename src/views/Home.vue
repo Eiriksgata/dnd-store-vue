@@ -1,18 +1,60 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <el-container>
+      <el-main>
+        <el-card class="card-style">
+          <el-button class="button-create" type="primary" size="medium">
+            Create Store
+          </el-button>
+
+          <el-input
+            v-model="storeCode"
+            placeholder="Store code"
+            size="medium"
+            class="line-heigth-spacing"
+            @keyup.enter.native="searchStore()"
+          ></el-input>
+
+          <div style="cursor: pointer" @click="selectStore()">
+            <StoreQuickView
+              v-show="showQuickView"
+              :name="storeData.name"
+              :describe="storeData.describe"
+              :url="imageUrl"
+            />
+          </div>
+        </el-card>
+      </el-main>
+    </el-container>
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
 
-@Component({
-  components: {
-    HelloWorld,
-  },
-})
-export default class Home extends Vue {}
+<style scoped>
+.home {
+  background-color: #27ae60;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+.card-style {
+  max-width: 400px;
+  min-width: 200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.line-heigth-spacing {
+  margin-top: 10px;
+}
+
+.button-create {
+  width: 100%;
+}
+</style>
+
+<script lang="ts">
+import Home from "./home";
+
+export default Home;
 </script>
