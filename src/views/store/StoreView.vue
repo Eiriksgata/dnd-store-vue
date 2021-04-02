@@ -58,7 +58,8 @@
         </el-card>
 
         <el-card class="card-style line-heigth-spacing">
-          <!-- 统计：{{ countPrice }} -->
+          统计：<br>
+          {{ countPrice }}
         </el-card>
       </el-main>
     </el-container>

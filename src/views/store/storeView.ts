@@ -20,15 +20,19 @@ export default class StoreView extends Vue {
     pp: 0
   }
 
+  shoppingList = new Map<string, ItemInfo>();
+
   typeSwith() {
     this.typeDataList = AllCommodity[this.itemType];
   }
 
   buyGoods(currentValue: number, oldValue: number, item: ItemInfo) {
 
-
     const _this = this;
-    console.log(currentValue, oldValue, item);
+    this.shoppingList.set(item.name, item);
+
+    // console.log(this.typeDataList);
+    // console.log(currentValue, oldValue, item);
 
 
     // this.countPrice = {
@@ -38,7 +42,28 @@ export default class StoreView extends Vue {
     //   gp: this.countPrice.gp + item.price.gp,
     //   pp: this.countPrice.pp + item.price.pp
     // }
+    this.priceCount();
+  }
 
+  priceCount() {
+    let price = {
+      cp: 0,
+      sp: 0,
+      ep: 0,
+      gp: 0,
+      pp: 0
+    };
+    this.shoppingList.forEach((value, key) => {
+      price = {
+        cp: price.cp + value.price.cp * value.number,
+        sp: price.sp + value.price.sp * value.number,
+        ep: price.ep + value.price.ep * value.number,
+        gp: price.gp + value.price.gp * value.number,
+        pp: price.pp + value.price.pp * value.number
+      }
+    });
+    this.countPrice = price;
+    console.log(this.price2text(price));
   }
 
   mounted() {

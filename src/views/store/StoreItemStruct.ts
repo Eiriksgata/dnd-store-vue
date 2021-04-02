@@ -52,6 +52,7 @@ export interface ItemInfo {
     gp: number;
     pp: number;
   };
+  number : number;
 }
 
 export interface ItemType {
